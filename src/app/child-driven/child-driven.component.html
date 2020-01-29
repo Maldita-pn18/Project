@@ -1,0 +1,30 @@
+
+<table id="t01">
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>Fullname</th>
+            <th>E -mail</th>
+            <th>Gender</th>
+            <th>Phone Number</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th><button type="button" class="btn btn-success btn-block-sm" (click)="addRegister()"><i class="fa fa-plus-square"></i></button></th>
+
+        </tr>
+    </thead>
+    <tbody *ngFor="let data of listOfRegistered ; let i = index" [attr.data-index]="i">
+        <td>{{i+1}}</td>
+        <td>{{data.fullname}}</td>
+        <td>{{data.email}}</td>
+        <td>{{data.gender}}</td>
+        <td>{{data.phoneNo}}</td>
+        <td>{{data.username}}</td>
+        <td>{{data.password}}</td>
+        <td class="action">
+        &nbsp;&nbsp;<button type="button" class="btn btn-primary btn-block-sm" (click)="Edit(data)"><i class="far fa-edit"></i></button>&nbsp;&nbsp;
+        </td>
+    </tbody>
+</table>
+
+

@@ -1,0 +1,99 @@
+<div *ngIf="registration">
+    <div>
+        <form (ngSubmit)="onSubmit(sampleForm)" #sampleForm="ngForm">
+            <div class="card bg-light">
+                <article class="card-body mx-auto" style="max-width: 400px;">
+                    <h4 class="card-title mt-3 text-center"><b>REGISTRATION FORM</b></h4>
+                    <p class="text-center"></p>
+                    <div id="avatar">
+                        <i class="image fa fa-user-circle" aria-hidden="true"></i>
+                    </div>
+                    <p class="divider-text">
+                        <span class="bg-light">Register</span>
+                    </p>
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input class="form-control" required [(ngModel)]="info.fullname" name="fullname" #fullname="ngModel"
+                            placeholder="Full name" type="text">
+                    </div>
+                    <div [hidden]="fullname.valid || fullname.pristine" class="alert alert-danger">
+                        Name is required
+                    </div> <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                        </div>
+                        <input class="form-control" [(ngModel)]="info.email" name=email #Email="ngModel" required
+                            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="Email address" type="email">
+                    </div>
+                    <div [hidden]="Email.valid || Email.pristine" class="alert alert-danger">
+                        Email address is invalid
+                        <!-- <div  *ngIf="Email.errors ">
+                                            </div> -->
+                    </div> <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+                        </div>
+                        <select required class="form-control" ngModel name="gender" #gender="ngModel" style="max-width: 120px;"
+                            [(ngModel)]="info.gender">
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+
+                        </select>
+                        <input class="form-control" [(ngModel)]="info.phoneNo" name="phoneNo" #phoneNo="ngModel"
+                            required pattern='^[+0-9]+$' placeholder="Phone number" type="text">
+
+                    </div> <!-- form-group// -->
+                    <div [hidden]="phoneNo.valid || phoneNo.pristine" class="alert alert-danger">
+                            Not a valid Phone Number
+                        <!-- <div  *ngIf="Email.errors ">
+                                        </div> -->
+                    </div>
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input class="form-control" required [(ngModel)]="info.username" name="username" #Username="ngModel"
+                            placeholder="Username" type="text" pattern="^[a-z0-9_-]{8,15}$">
+                    </div>
+                    <div [hidden]="Username.valid || Username.pristine" class="alert alert-danger">
+                        Username not valid
+                    </div> <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input class="form-control" [(ngModel)]="password" name=password #Password="ngModel"
+                            placeholder="Create password" type="password" required minlength="8">
+                    </div>
+                    <div [hidden]="Password.valid || Password.pristine" class="alert alert-danger">
+                        Password must be at least 8 characters long
+                        <!-- <p *ngIf="Rpassword.errors.minlength"></p> -->
+                        <!-- form-group// -->
+                    </div>
+                        <!-- <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                            </div>
+                            <input class="form-control" [(ngModel)]="info.rpassword" name=rpassword #rPassword="ngModel"
+                                placeholder="Retype password" type="password" required minlength="8"  required validateEqual="password">
+                        </div>
+                        <div [hidden]="rPassword.valid || rPassword.pristine" class="alert alert-danger">
+                        Incorrect password
+
+                        </div> -->
+
+                    <button type="submit" class="btn btn-primary btn-block" [disabled]="!sampleForm.form.valid  ">
+                        Submit</button>
+
+                </article>
+            </div>
+        </form>
+    </div>
+</div>
+<div *ngIf="tableList">
+    <app-child-driven [listOfRegistered]="listOfInfo" (add_register_display)="display()" (edit)="edit($event)"></app-child-driven>
+</div>

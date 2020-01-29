@@ -1,0 +1,12 @@
+.maincover{
+    background-image: url("http://coreui.io/images/ogimages/angular_1200_630.jpg");
+}
+.home{
+    margin-top: 20%;
+    text-align: center;
+}
+h1{
+    font-size: 300%;
+    color : white;
+    font-family: monospace;
+}

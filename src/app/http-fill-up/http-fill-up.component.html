@@ -1,0 +1,118 @@
+
+<div *ngIf="registration">
+    <div>
+        <form (ngSubmit)="onSubmit(sampleForm)" #sampleForm="ngForm">
+            <div class="card bg-light">
+                <article class="card-body mx-auto" style="max-width: 400px;">
+                    <h4 class="card-title mt-3 text-center"><b>CONTACT US</b></h4>
+                    <p class="text-center"></p>
+                    <div id="avatar">
+                        <i class="image fa fa-user-circle" aria-hidden="true"></i>
+                    </div>
+                    <p class="divider-text">
+                        <span class="bg-light">Register</span>
+                    </p>
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input class="form-control" required [(ngModel)]="info.name" name="name" #fullname="ngModel"
+                            placeholder="Full name" type="text">
+                    </div>
+                    <div [hidden]="fullname.valid || fullname.pristine" class="alert alert-danger">
+                        Name is required
+                    </div> <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                        </div>
+                        <input class="form-control" [(ngModel)]="info.email" name=email #Email="ngModel" required
+                            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="Email address" type="email">
+                    </div>
+                    <div [hidden]="Email.valid || Email.pristine" class="alert alert-danger">
+                        Email address is invalid
+                        <!-- <div  *ngIf="Email.errors ">
+                                                </div> -->
+                    </div> <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <span class="input-group-text"> <i class="fas fa-phone"></i> </span>
+                        <input class="form-control" [(ngModel)]="info.phone" name="phone" #phoneNo="ngModel"
+                            required pattern='^[+0-9]+$' placeholder="Phone number" type="text">
+
+                    </div> <!-- form-group// -->
+                    <div [hidden]="phoneNo.valid || phoneNo.pristine" class="alert alert-danger">
+                        Not a valid Phone Number
+                        <!-- <div  *ngIf="Email.errors ">
+                                            </div> -->
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary btn-block" [disabled]="!sampleForm.form.valid  ">
+                        Submit</button>
+                        
+
+                </article>
+            </div>
+        </form>
+    </div>
+    <div>
+        <!-- <app-child-driven [listOfRegistered]="listOfInfo"></app-child-driven> -->
+        <app-http-exercise [driveStore] = "drive" (add_user_display)="display()" (edit)="edit($event)" ></app-http-exercise>
+    </div>
+</div>
+<div *ngIf="editData">
+        <div>
+                <form (ngSubmit)="onSubmit(sampleForm)" #sampleForm="ngForm">
+                    <div class="card bg-light">
+                        <article class="card-body mx-auto" style="max-width: 400px;">
+                            <h4 class="card-title mt-3 text-center"><b>EDIT INFORMATION</b></h4>
+                            <p class="text-center"></p>
+                            <div id="avatar">
+                                <i class="image fa fa-user-circle" aria-hidden="true"></i>
+                            </div>
+                            <p class="divider-text">
+                                <span class="bg-light">Personal Information</span>
+                            </p>
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                </div>
+                                <input class="form-control" required [(ngModel)]="info.name" name="name" #fullname="ngModel"
+                                    placeholder="Full name" type="text">
+                            </div>
+                            <div [hidden]="fullname.valid || fullname.pristine" class="alert alert-danger">
+                                Name is required
+                            </div> <!-- form-group// -->
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                                </div>
+                                <input class="form-control" [(ngModel)]="info.email" name=email #Email="ngModel" required
+                                    pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="Email address" type="email">
+                            </div>
+                            <div [hidden]="Email.valid || Email.pristine" class="alert alert-danger">
+                                Email address is invalid
+                                <!-- <div  *ngIf="Email.errors ">
+                                                        </div> -->
+                            </div> <!-- form-group// -->
+                            <div class="form-group input-group">
+                                <span class="input-group-text"> <i class="fas fa-phone"></i> </span>
+                                <input class="form-control" [(ngModel)]="info.phone" name="phone" #phoneNo="ngModel"
+                                    required pattern='^[+0-9]+$' placeholder="Phone number" type="text">
+        
+                            </div> <!-- form-group// -->
+                            <div [hidden]="phoneNo.valid || phoneNo.pristine" class="alert alert-danger">
+                                Not a valid Phone Number
+                                <!-- <div  *ngIf="Email.errors ">
+                                                    </div> -->
+                            </div>
+        
+        
+                            <button type="submit" class="btn btn-success btn-block" [disabled]="!sampleForm.form.valid  ">
+                               Update</button>
+        
+                        </article>
+                    </div>
+                </form>
+            </div>
+</div>

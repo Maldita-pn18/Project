@@ -1,0 +1,27 @@
+<div>
+    <table id="t01">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fullname</th>
+                <th>E -mail Address</th>
+                <th>Contact Number</th>
+                <th><button [routerLink] ="['/']"  type="button" class="btn btn-info btn-block-sm" ><i class="fas fa-tachometer-alt"></i></button>&nbsp;&nbsp;
+                <button [routerLink] ="['/not_found']" class="btn btn-lg btn-danger"><i class="fas fa-exclamation-triangle"></i></button></th>
+                <!-- <button type="button" class="btn btn-success btn-block-sm" (click)="addUser()"><i class="fa fa-plus-square"></i></button></th> -->
+
+            </tr>
+        </thead>
+        <tbody *ngFor="let data of  driveStore ; let id = index" [attr.data-index]="i">
+            <td>{{data.id}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.email}}</td>
+            <td>{{data.phone}}</td>
+            <td class="action">
+                <button [routerLink] ="['/view', data.id]" type="button" class="btn btn-success btn-block-sm" ><i class="fas fa-eye"></i></button>
+                &nbsp;&nbsp;<button  type="button" class="btn btn-primary btn-block-sm" (click)="Edit(data)"><i class="far fa-edit"></i></button>
+                &nbsp;&nbsp;<button type="button" class="btn btn-danger btn-block-sm" (click)=Delete(id)><i class="fas fa-trash-alt"></i></button>
+            </td>
+        </tbody>
+    </table>
+</div>
